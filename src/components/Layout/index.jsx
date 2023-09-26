@@ -4,7 +4,7 @@ import './index.css'
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
-function Layout() {
+export default function Layout() {
   return (
     <div>
       <Header />
@@ -15,5 +15,3 @@ function Layout() {
     </div>
   );
 }
-
-export default Layout;

@@ -1,13 +1,11 @@
-
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route  } from 'react-router-dom';
+import Layout from '../components/Layout';
 import Home from '../Pages/Home';
 import SignIn from '../Pages/SignIn'; 
 import User from '../Pages/User';
-import Layout from '../components/Layout';
 
 
-
-function Router() {
+export default function Router() {
   return (
     // Use the BrowserRouter component to define routing
      <BrowserRouter>
@@ -22,5 +20,3 @@ function Router() {
     
   );
 }
-
-export default Router;
