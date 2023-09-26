@@ -12,7 +12,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="Signin" element={<SignIn />} />
+          <Route path="SignIn" element={<SignIn />} />
           <Route path="User" element={<User />} />
         </Route>  
       </Routes>
