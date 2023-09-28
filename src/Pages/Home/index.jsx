@@ -1,6 +1,6 @@
 import Banner from '../../components/Banner'
 import FeatureItem from '../../components/FeatureItem';
-import features from '../../components/FeatureItem/Features'
+import features from '../../data/features'
 
 export default function Home() {
   return (
