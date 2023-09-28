@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 
 export default function Layout() {
   const location = useLocation();
-  const mainClassName = location.pathname === '/SignIn' ? 'main bg-dark' : '';
+  const mainClassName = location.pathname !== '/' ? 'main bg-dark' : '';
 
   return (
     <>
