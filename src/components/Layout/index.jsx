@@ -8,13 +8,11 @@ import Footer from "../../components/Footer";
 
 export default function Layout() {
   const location = useLocation();
-  const mainClassName = location.pathname !== '/' ? 'main bg-dark' : '';
-
   return (
     <>
       <Header />
-      <main className={mainClassName}>
-        <Outlet /> {/* Renders the child routes */}
+      <main className={` ${location.pathname === '/' ? '' : 'main bg-dark'}`}>
+        <Outlet/>
       </main>
       <Footer />
     </>
