@@ -1,14 +1,15 @@
 
-import { Link} from 'react-router-dom'; 
-import ArgentBankLogo from '../../assets/argentBankLogo.png';
+import { Link } from 'react-router-dom'; 
+import ArgentBankLogo from '../../assets/argentBankLogo.webp';
 import './index.css'
 
-export default function Header() {
-    
 
+export default function Header() {
+  const token = window.localStorage.getItem("token");
+  
   return (
     <nav className="main-nav">
-    <Link to="/" className="main-nav-logo">
+    <Link to="./" className="main-nav-logo">
       <img
         className="main-nav-logo-image"
         src={ArgentBankLogo}
@@ -17,11 +18,23 @@ export default function Header() {
       <h1 className="sr-only">Argent Bank</h1>
     </Link>
     <div>
-    <Link to="/SignIn" className="main-nav-item">
-        <i className="fa fa-user-circle"></i>
-        {" "}Sign In
-    </Link>
+      {token ?(
+        <Link to="./SignIn" className="main-nav-item" 
+            onClick={() => {window.localStorage.removeItem("token")}}>
+          <i className="fa fa-sign-out"></i>
+          {" "}Sign Out
+        </Link>
+      ) : (
+        <Link to="./SignIn" className="main-nav-item">
+          <i className="fa fa-user-circle"></i>
+          {" "}Sign In
+        </Link>
+      )}
+    
     </div>
   </nav>                  
   );
 }
+
+
+
