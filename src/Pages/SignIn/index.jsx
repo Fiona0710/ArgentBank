@@ -6,15 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [error, setError] = useState(null);
-
- 
   
  async function submitForm(event) {
     event.preventDefault();
-          
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+       
     try {
       const response =  await fetch (`http://localhost:3001/api/v1/user/login`, {
             method: 'POST',
@@ -28,15 +26,16 @@ export default function SignIn() {
       
         const responseData = await response.json();
         const token = responseData.body.token;
-        window.localStorage.setItem('token', token);
+         
+        window.localStorage.setItem('token', token); 
         navigate("/User"); 
-        
       } else {
         setError('Oups, il y a eu un problème');
       }
     } catch (error) {
       setError('Oups, il y a eu une erreur de réseau');
     }
+   
 }
             
     return (
@@ -47,16 +46,14 @@ export default function SignIn() {
           id='username'
           label='Email'
           type='text'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}  
+          name='email'
         />
         <FormField
           className='input-wrapper'
           id='password'
           label='Password'
           type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} 
+          name='password'
         />
         <FormField
           className='input-remember'
