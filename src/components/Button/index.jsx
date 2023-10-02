@@ -1,7 +1,12 @@
 
-export default function Button ({className, name}) {
+export default function Button ({className, name, type}) {
 
     return(
-    <button className={className}>{name}</button>
+    <button 
+        type={type} 
+        className={className}
+    >
+        {name}
+    </button>
     )
 }
