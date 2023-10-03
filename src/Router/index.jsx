@@ -5,7 +5,6 @@ import SignIn from '../Pages/SignIn';
 import User from '../Pages/User';
 import ProtectedRoute from '../components/ProtectedRoute';
 
-  const token = window.localStorage.getItem("token");
 export default function Router() {
   
   return (
@@ -14,13 +13,11 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="SignIn" element={<SignIn />} />
-          
-          <Route path="User"
-            element={
-              <ProtectedRoute token={token}>
-                <User />
-              </ProtectedRoute>
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/User"
+            element={ <ProtectedRoute >
+                        <User />
+                      </ProtectedRoute> 
             }
           />  
           <Route path="*" element= {<SignIn/>} />  
