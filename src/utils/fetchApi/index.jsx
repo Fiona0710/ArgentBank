@@ -1,9 +1,12 @@
+import { useSelector } from 'react-redux';
+
 export async function fetchApi(url, method, body, requireToken = true) {
     const headers = {'Content-Type': 'application/json' };
         
      
     if (requireToken) {
-    const token = window.localStorage.getItem('token');
+      const token = useSelector((state) => state.Auth.token);
+    
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
         } else {
