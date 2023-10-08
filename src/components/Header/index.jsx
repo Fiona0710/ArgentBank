@@ -2,11 +2,13 @@
 import { Link } from 'react-router-dom'; 
 import ArgentBankLogo from '../../assets/argentBankLogo.webp';
 import './index.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { removeToken } from '../../redux/tokenSlice';
 
 
 export default function Header() {
-  const token = window.localStorage.getItem("token");
-  
+  const token = useSelector(state => state.Auth.token)
+  const dispatch = useDispatch();
   return (
     <nav className="main-nav">
     <Link to="./" className="main-nav-logo">
@@ -20,7 +22,7 @@ export default function Header() {
     <div>
       {token ?(
         <Link to="./SignIn" className="main-nav-item" 
-            onClick={() => {window.localStorage.removeItem("token")}}>
+            onClick={() => {dispatch(removeToken({token}))}}>
           <i className="fa fa-sign-out"></i>
           {" "}Sign Out
         </Link>

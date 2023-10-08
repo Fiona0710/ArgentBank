@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { signInFetch } from '../../services/UserService';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../redux/tokenSlice';
 
 export function useSignIn() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
 
   async function submitForm(event) {
     event.preventDefault();
@@ -12,10 +16,12 @@ export function useSignIn() {
     const password = event.target.password.value;
 
     try {
-      const success = await signInFetch(email, password);
+      const token = await signInFetch(email, password);
 
-      if (success) {
+      if (token) {
         setError(null);
+        console.log(token)
+        dispatch(setToken({token}))
         navigate("/User");
       } else {
         setError('Oups, il y a eu un problème');
