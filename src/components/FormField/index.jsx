@@ -7,7 +7,6 @@ export default function FormField ({className, id, type, label, name}) {
             type={type} 
             id={id}
             name={name}
-            
              />
           </div>
     )
