@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
+import { selectAuthToken } from '../../redux/selectors';
 
 export async function fetchApi(url, method, body, requireToken = true) {
     const headers = {'Content-Type': 'application/json' };
         
-     
     if (requireToken) {
-      const token = useSelector((state) => state.Auth.token);
-    
+      const token = useSelector(selectAuthToken); 
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
         } else {

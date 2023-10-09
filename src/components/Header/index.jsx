@@ -4,10 +4,10 @@ import ArgentBankLogo from '../../assets/argentBankLogo.webp';
 import './index.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { removeToken } from '../../redux/tokenSlice';
-
+import { selectAuthToken } from "../../redux/selectors"
 
 export default function Header() {
-  const token = useSelector(state => state.Auth.token)
+  const token = useSelector(selectAuthToken)
   const dispatch = useDispatch();
   return (
     <nav className="main-nav">

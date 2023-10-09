@@ -17,17 +17,16 @@ export function useSignIn() {
 
     try {
       const token = await signInFetch(email, password);
-
+    
       if (token) {
         setError(null);
         console.log(token)
         dispatch(setToken({token}))
         navigate("/User");
-      } else {
-        setError('Oups, il y a eu un problème');
-      }
+         
+      } ; 
     } catch (error) {
-      setError('Oups, il y a eu une erreur de réseau');
+      setError('Oups, il y a eu un problème');
     }
   }
 
