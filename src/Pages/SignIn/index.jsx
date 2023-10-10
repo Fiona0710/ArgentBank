@@ -7,6 +7,7 @@ export default function SignIn() {
   const { error, submitForm } = useSignIn();
            
     return (
+      <div className='main bg-dark'>
       <FormContainer onSubmit={submitForm}>
         {error && <span>{error}</span>}
         <FormField
@@ -35,5 +36,6 @@ export default function SignIn() {
           type='submit'  
         />
       </FormContainer>
+      </div>
     );
   }
