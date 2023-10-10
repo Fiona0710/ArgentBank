@@ -5,20 +5,24 @@ export async function signInFetch(email, password) {
   const responseData = await fetchApi(
     '/login',
     'POST', 
-    { email, password }, 
+    { email, password },
+    null, 
     false);
   const token = responseData.body.token;
   return token;
 }
 
 
-export async function profilFetch() {
+export async function profilFetch(token) {
   const profileData = await fetchApi (
     '/profile', 
     'POST', 
-    {}, 
+    {},
+    token, 
     true )
-  const data = profileData.body;
+  const data = profileData;
+   console.log(data)
   return data
+ 
 
 }

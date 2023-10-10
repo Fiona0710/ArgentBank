@@ -1,18 +1,18 @@
-import { useSelector } from 'react-redux';
-import { selectAuthToken } from '../../redux/selectors';
 
-export async function fetchApi(url, method, body, requireToken = true) {
+
+export async function fetchApi(url, method, body, token, requireToken = true) {
     const headers = {'Content-Type': 'application/json' };
         
     if (requireToken) {
-      const token = useSelector(selectAuthToken); 
+       
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
         } else {
             throw new Error('Token d\'authentification manquant');
         }
     }
-    const response = await fetch(`http://localhost:3001/api/v1/user${url}`, {
+    
+    const response = await fetch(`${import.meta.env.VITE_APP_API_URL}user${url}`, {
       method: method,
       headers:headers,
       body: JSON.stringify(body)
