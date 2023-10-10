@@ -9,7 +9,6 @@ export function useSignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-
   async function submitForm(event) {
     event.preventDefault();
     const email = event.target.email.value;
@@ -22,13 +21,11 @@ export function useSignIn() {
         setError(null);
         console.log(token)
         dispatch(setToken({token}))
-        navigate("/User");
-         
-      } ; 
+        navigate("/User");   
+      }; 
     } catch (error) {
-      setError('Oups, il y a eu un problème');
+      setError('Oups, il y a eu un problème');  
     }
   }
-
   return { error, submitForm };
 }
