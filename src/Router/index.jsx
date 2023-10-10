@@ -22,7 +22,7 @@ export default function Router() {
                         </ProtectedRoute> 
               }
             />  
-            <Route path="*" element= {<SignIn/>} />  
+            <Route path="*" element= {<Home />} />  
           </Route>    
         </Routes>
       </BrowserRouter>
