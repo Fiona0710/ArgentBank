@@ -3,7 +3,7 @@ export default function Banner() {
     
     return (
         <div className="hero">
-        <section className="hero-content">
+        <section className="hero_content">
           <h2 className="sr-only">Promoted Content</h2>
           <h3 className="subtitle">No fees.</h3>
           <h3 className="subtitle">No minimum deposit.</h3>

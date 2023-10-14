@@ -20,7 +20,6 @@ export function useUserData() {
         alert('Une erreur s\'est produite. Veuillez réessayer plus tard.');
       }
     }
-
     fetchData();
   }, [] );
 

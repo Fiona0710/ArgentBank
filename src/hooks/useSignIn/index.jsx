@@ -19,6 +19,5 @@ export function useSignIn() {
       setError('Oups, il y a eu un problème');
     }
   }
-
   return { error, manageSignIn};
 }

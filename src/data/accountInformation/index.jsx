@@ -1,4 +1,3 @@
-
 const accountInformation = [
     {
         title: 'Argent Bank Checking (x8349)',

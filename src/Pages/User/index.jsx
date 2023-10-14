@@ -31,7 +31,7 @@ async function submitFormEditName(event) {
       const currentUserName = userData.userName;
 
        return (
-        <FormContainer onSubmit={submitFormEditName} title='Edit Name' >
+        <FormContainer onSubmit={submitFormEditName} title='Edit Name'>
            {error && <span>{error}</span>}
           <FormField 
             className='input-wrapper'
@@ -42,14 +42,14 @@ async function submitFormEditName(event) {
             defaultValue={currentUserName}
           />
           <Button 
-            type='submit'
             className='edit-button'
+            type='submit'
             name='Save'
           />
           {" "}
           <Button 
-            type='button'
             className='edit-button'
+            type='button'
             name='Cancel'
             onClick={() => setIsEdit(false)} 
           />   
@@ -62,7 +62,7 @@ async function submitFormEditName(event) {
    return (
       <div className='main bg-dark'>
       <div className="header">
-        <h1>Welcome back<br />{userData.firstName} {userData.lastName}</h1>
+        <h1>Welcome back<br />{userData.firstName} {userData.lastName} !</h1>
         {!isEdit && (
             <Button
               className='edit-button'

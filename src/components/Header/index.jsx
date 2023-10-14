@@ -1,7 +1,6 @@
 
 import { Link } from 'react-router-dom'; 
-import ArgentBankLogo from '../../assets/argentBankLogo.webp';
-import './index.css'
+import ArgentBankLogo from '../../assets/img/argentBankLogo.webp';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeToken } from '../../redux/slices/tokenSlice';
 import { resetData } from '../../redux/slices/profileSlice';
@@ -14,9 +13,9 @@ export default function Header() {
   
   return (
     <nav className="main-nav">
-    <Link to="./" className="main-nav-logo">
+    <Link to="./" className="main-nav_logo">
       <img
-        className="main-nav-logo-image"
+        className="main-nav_logo--image"
         src={ArgentBankLogo}
         alt="Argent Bank Logo"
       />
@@ -25,18 +24,18 @@ export default function Header() {
     <div>
       {token ?(
         <div>
-          <Link to="./User" className="main-nav-item">
+          <Link to="./User" className="main-nav_item">
             <i className="fa fa-user-circle"></i>
             {" "}{userData.userName}
           </Link>
-          <Link to="./SignIn" className="main-nav-item" 
+          <Link to="./SignIn" className="main-nav_item" 
               onClick={() => {dispatch(removeToken({})) , dispatch(resetData({}))}}>
-            <i className="fa fa-sign-out"></i>
+            {" "}<i className="fa fa-sign-out"></i>
             {" "}Sign Out
           </Link>
         </div>
       ) : (
-        <Link to="./SignIn" className="main-nav-item">
+        <Link to="./SignIn" className="main-nav_item">
           <i className="fa fa-user-circle"></i>
           {" "}Sign In
         </Link>

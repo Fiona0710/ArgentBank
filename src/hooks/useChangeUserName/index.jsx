@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { changeUserNameService } from '../../services';
 import {  editUserName  } from '../../redux/slices/profileSlice';
 
-
 export function useChangeUserName() {
 const [error, setError] = useState(null);
 
