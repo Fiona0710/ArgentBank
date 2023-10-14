@@ -1,31 +1,24 @@
 import { useState } from 'react';
-import { signInFetch } from '../../services/UserService';
-import { useNavigate } from 'react-router-dom';
+import { signInService } from '../../services';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../../redux/tokenSlice';
+import { setToken } from '../../redux/slices/tokenSlice';
 
 export function useSignIn() {
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  async function submitForm(event) {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
 
+  async function manageSignIn(email, password) {
     try {
-      const token = await signInFetch(email, password);
-    
+      const token = await signInService(email, password);
+       
       if (token) {
         setError(null);
-        console.log(token)
-        dispatch(setToken({token}))
-        navigate("/User");   
-      }; 
+        dispatch(setToken({ token }));  
+      }
     } catch (error) {
-      setError('Oups, il y a eu un problème');  
+      setError('Oups, il y a eu un problème');
     }
   }
-  return { error, submitForm };
+
+  return { error, manageSignIn};
 }

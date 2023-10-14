@@ -2,13 +2,36 @@ import FormContainer from '../../components/FormContainer';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 import { useSignIn } from '../../hooks/useSignIn';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectAuthToken } from '../../redux/selectors';
+import { useEffect } from 'react';
 
 export default function SignIn() {
-  const { error, submitForm } = useSignIn();
-           
-    return (
-      <div className='main bg-dark'>
-      <FormContainer onSubmit={submitForm}>
+  const { error, manageSignIn } = useSignIn();
+  const navigate = useNavigate();
+  const token = useSelector(selectAuthToken);
+
+  async function submitForm(event) {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    manageSignIn(email, password);
+  }
+
+  useEffect(() => {
+    
+    if (token) {
+        navigate("/User"); 
+    }
+  }, [token, navigate]);
+
+  return (
+    <div className='main bg-dark'>
+      <FormContainer
+        title='Sign In' 
+        onSubmit={submitForm}>
         {error && <span>{error}</span>}
         <FormField
           className='input-wrapper'
@@ -33,9 +56,9 @@ export default function SignIn() {
         <Button
           className='sign-in-button'
           name='Sign In'
-          type='submit'  
+          type='submit'
         />
       </FormContainer>
-      </div>
-    );
-  }
+    </div>
+  );
+}
