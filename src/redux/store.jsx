@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import  tokenSlice from './tokenSlice'; 
-import profileSlice from './profileSlice';
+import tokenSlice from './slices/tokenSlice';
+import profileSlice from './slices/profileSlice'; 
 
 const store = configureStore({
   reducer: {
