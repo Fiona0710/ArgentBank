@@ -1,5 +1,5 @@
 
-export default function FormField ({className, id, type, label, name}) {
+export default function FormField ({className, id, type, label, name, defaultValue}) {
     return(
           <div className={className}>
             <label htmlFor={id}>{label}</label>
@@ -7,6 +7,7 @@ export default function FormField ({className, id, type, label, name}) {
             type={type} 
             id={id}
             name={name}
+            defaultValue={defaultValue}
              />
           </div>
     )
