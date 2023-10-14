@@ -170,6 +170,7 @@ body {
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
+  color:#222;
   width: 300px;
   margin: 0 auto;
   margin-top: 3rem;
