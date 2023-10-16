@@ -130,12 +130,13 @@ paths:
       summary: API transactions of a users bank account
       description: User bank account transaction list retrieval API
       parameters:
-        - name: accountID
-          in: path
-          required: true
+        - in: path
+          name: accountID
           description: ID of the user's bank account
-          schema:
-            type: string
+          required: true
+          type: string
+      produces:
+        - application/json      
       responses:
         '200':
           description: User bank account transactions successfully recovered
@@ -148,7 +149,7 @@ paths:
         '500':
           description: Internal Server Error 
   /user/accounts/{accountID}/transactions/{transactionID}/category:
-    put:
+    patch:
       security:
         - Bearer: []
       tags:
@@ -160,27 +161,25 @@ paths:
           in: path
           required: true
           description: ID of the user's bank account
-          schema:
-            type: string
+          type: string
         - name: transactionID
           in: path
           required: true
           description: ID of the user's bank account transaction
-          schema:
-            type: string
+          type: string
         - in: body
           name: body
           description: Category Payload
           required: true
           schema:
             $ref: '#/definitions/Category'
-            produces:
-              - application/json
+      produces:
+        - application/json
       responses:
-        '200':
-          description: User bank account transaction category successfully updated
-          schema:
-            $ref: '#/definitions/UserAccountTransactionCategory'
+        '204':
+          description: User bank account transaction category successfully updated (No content)
+        '400':
+          description: Bad request   
         '401':
           description: Unauthorized
         '404':
@@ -190,46 +189,7 @@ paths:
 
 
   /user/accounts/{accountID}/transactions/{transactionID}/note:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: Add Note for a Transaction
-      description: Add the note of a user's bank account transaction using transactionID
-      parameters:
-        - name: accountID
-          in: path
-          required: true
-          description: ID of the user's bank account
-          schema:
-            type: string
-        - name: transactionID
-          in: path
-          required: true
-          description: ID of the user's bank account transaction
-          schema:
-            type: string
-        - in: body
-          name: body
-          description: Note Payload
-          required: true
-          schema:
-            $ref: '#/definitions/Note'
-            produces:
-              - application/json
-      responses:
-        '200':
-          description: User bank account transaction note successfully added
-          schema:
-            $ref: '#/definitions/UserAccountTransactionNote'
-        '401':
-          description: Unauthorized
-        '404':
-          description: Not Found
-        '500':
-          description: Internal Server Error 
-    put:
+    patch:
       security:
         - Bearer: []
       tags:
@@ -241,62 +201,32 @@ paths:
           in: path
           required: true
           description: ID of the user's bank account
-          schema:
-            type: string
+          type: string
         - name: transactionID
           in: path
           required: true
           description: ID of the user's bank account transaction
-          schema:
-            type: string
+          type: string
         - in: body
           name: body
           description: Note Payload
           required: true
           schema:
             $ref: '#/definitions/Note'
-            produces:
-              - application/json
+      produces:
+        - application/json
       responses:
-        '200':
-          description: User bank account transaction note successfully updated
-          schema:
-            $ref: '#/definitions/UserAccountTransactionNote'
+        '204':
+          description: User bank account transaction note successfully updated (No content)
+        '400':
+          description: Bad request    
         '401':
           description: Unauthorized
         '404':
           description: Not Found
         '500':
           description: Internal Server Error 
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: Delete a Transaction
-      description: Remove transaction note from a user's bank account using transaction ID
-      parameters:
-        - name: accountID
-          in: path
-          required: true
-          description: ID of the user's bank account
-          schema:
-            type: string
-        - name: transactionID
-          in: path
-          required: true
-          description: ID of the user's bank account transaction
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Transaction deleted successfully
-        '401':
-          description: Unauthorized
-        '404':
-          description: Not Found
-        '500':
-          description: Internal Server Error         
+        
           
 securityDefinitions:
   Bearer:
@@ -354,28 +284,20 @@ definitions:
       userName:
         type: string
   UserAccounts:
-    type: object
-    properties:
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          accounts:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                title:
-                  type: string
-                amount:
-                  type: string
-                description:
-                  type: string
-            minItems: 3
-            maxItems: 3
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        amount:
+          type: string
+        description:
+          type: string
+    minItems: 3
+    maxItems: 3
   Transaction:
     type: object
     properties:
@@ -396,59 +318,15 @@ definitions:
       note:
         type: string
   UserAccountTransactions:
-    type: object
-    properties:
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          account:
             type: array
             items:
               $ref: '#/definitions/Transaction'
             minItems: 3  
-  UserAccountTransactionCategory:
-    type: object
-    properties:
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          account:
-            type: object
-            properties:
-              transaction:
-                type: object
-                properties:
-                  transactionID:
-                    type: string
-                  category:
-                    type: string
   Category:
     properties:
       category:
         type: string
         description: transaction category              
-  UserAccountTransactionNote:
-    type: object
-    properties:
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          account:
-            type: object
-            properties:
-              transaction:
-                type: object
-                properties:
-                  transactionID:
-                    type: string
-                  note:
-                    type: string
   Note:
     properties:
       note:
