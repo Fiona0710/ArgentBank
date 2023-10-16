@@ -10,14 +10,14 @@ export function useSignIn() {
   async function manageSignIn(email, password) {
     try {
       const token = await signInService(email, password);
-       
+
       if (token) {
         setError(null);
-        dispatch(setToken({ token }));  
+        dispatch(setToken({ token }));
       }
     } catch (error) {
       setError('Oups, il y a eu un problème');
     }
   }
-  return { error, manageSignIn};
+  return { error, manageSignIn };
 }

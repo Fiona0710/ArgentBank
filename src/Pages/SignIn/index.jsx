@@ -21,17 +21,17 @@ export default function SignIn() {
   }
 
   useEffect(() => {
-    
     if (token) {
-        navigate("/User"); 
+      navigate('/User');
     }
   }, [token, navigate]);
 
   return (
     <div className='main bg-dark'>
       <FormContainer
-        title='Sign In' 
-        onSubmit={submitForm}>
+        title='Sign In'
+        onSubmit={submitForm}
+      >
         {error && <span>{error}</span>}
         <FormField
           className='input-wrapper'
